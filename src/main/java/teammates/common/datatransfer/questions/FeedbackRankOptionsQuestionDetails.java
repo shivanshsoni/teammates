@@ -122,7 +122,7 @@ public class FeedbackRankOptionsQuestionDetails extends FeedbackRankQuestionDeta
                                     getSubmissionOptionsHtmlForRankingOptions(existingResponse.getAnswerList().get(i)),
                             Slots.FEEDBACK_RESPONSE_TEXT, Const.ParamsNames.FEEDBACK_RESPONSE_TEXT,
                             Slots.RANK_OPTION_VALUE, SanitizationHelper.sanitizeForHtml(options.get(i)));
-            optionListHtml.append(optionFragment).append(Const.EOL);
+            optionListHtml.append(optionFragment).append(System.lineSeparator());
 
         }
 
@@ -170,7 +170,7 @@ public class FeedbackRankOptionsQuestionDetails extends FeedbackRankQuestionDeta
                             Slots.OPTIONS, getSubmissionOptionsHtmlForRankingOptions(Const.INT_UNINITIALIZED),
                             Slots.FEEDBACK_RESPONSE_TEXT, Const.ParamsNames.FEEDBACK_RESPONSE_TEXT,
                             Slots.RANK_OPTION_VALUE, SanitizationHelper.sanitizeForHtml(options.get(i)));
-            optionListHtml.append(optionFragment).append(Const.EOL);
+            optionListHtml.append(optionFragment).append(System.lineSeparator());
         }
 
         boolean isMinOptionsToBeRankedEnabled = minOptionsToBeRanked != Integer.MIN_VALUE;
@@ -231,7 +231,7 @@ public class FeedbackRankOptionsQuestionDetails extends FeedbackRankQuestionDeta
                             Slots.RANK_OPTION_VALUE, SanitizationHelper.sanitizeForHtml(options.get(i)),
                             Slots.RANK_PARAM_OPTION, Const.ParamsNames.FEEDBACK_QUESTION_RANKOPTION);
 
-            optionListHtml.append(optionFragment).append(Const.EOL);
+            optionListHtml.append(optionFragment).append(System.lineSeparator());
         }
 
         boolean isMinOptionsToBeRankedEnabled = minOptionsToBeRanked != Integer.MIN_VALUE;
@@ -355,11 +355,12 @@ public class FeedbackRankOptionsQuestionDetails extends FeedbackRankQuestionDeta
 
             double average = computeAverage(ranksAssigned);
             String fragment = option + "," + df.format(average) + ","
-                    + StringHelper.join(",", ranksAssigned) + Const.EOL;
+                    + StringHelper.join(",", ranksAssigned) + System.lineSeparator();
             fragments.append(fragment);
         });
 
-        return "Option, Average Rank, Ranks Received" + Const.EOL + fragments.toString() + Const.EOL;
+        return "Option, Average Rank, Ranks Received" + System.lineSeparator() + fragments.toString()
+                    + System.lineSeparator();
     }
 
     /**
@@ -475,5 +476,4 @@ public class FeedbackRankOptionsQuestionDetails extends FeedbackRankQuestionDeta
     public String validateGiverRecipientVisibility(FeedbackQuestionAttributes feedbackQuestionAttributes) {
         return "";
     }
-
 }
