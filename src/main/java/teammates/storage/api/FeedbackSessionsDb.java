@@ -45,19 +45,18 @@ public class FeedbackSessionsDb extends EntitiesDb<FeedbackSession, FeedbackSess
 
         List<FeedbackSession> endEntities = load()
                 .filter("endTime >", curStart)
-                .filter("endTime <=", curEnd)
                 .list();
 
         List<FeedbackSession> startEntities = load()
-                .filter("startTime >=", curStart)
                 .filter("startTime <", curEnd)
                 .list();
 
         List<FeedbackSession> endTimeEntities = new ArrayList<>(endEntities);
+        List<FeedbackSession> endTimeEntities1 = new ArrayList<>(endEntities);
         List<FeedbackSession> startTimeEntities = new ArrayList<>(startEntities);
 
         endTimeEntities.removeAll(startTimeEntities);
-        startTimeEntities.removeAll(endTimeEntities);
+        startTimeEntities.removeAll(endTimeEntities1);
         endTimeEntities.addAll(startTimeEntities);
 
         for (FeedbackSession feedbackSession : endTimeEntities) {
